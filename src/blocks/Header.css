@@ -1,0 +1,48 @@
+.header {
+  max-width: 1360px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 32px 0 28px;
+  margin: 0 auto;
+}
+
+.header__left-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.header__date-and-location {
+  margin-left: 24px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.header__right-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header__add-clothes-btn {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.header__profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+}
+
+.header__profile-image {
+  width: 40px;
+  height: 40px;
+  margin-left: 12px;
+}
