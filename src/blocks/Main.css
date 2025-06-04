@@ -1,2 +1,10 @@
-.main {
+.cards__text {
+}
+
+.cards__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 323px);
+  gap: 20px 20px;
+  margin: 0;
+  padding: 0;
 }

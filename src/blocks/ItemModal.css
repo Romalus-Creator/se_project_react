@@ -1,0 +1,117 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.35s ease-in-out;
+  /* visibility: hidden; */
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__content_type_image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  /* align-items: flex-start; */
+  background-color: #fff;
+  border-radius: 8px;
+  /* padding: 28px; */
+  /* padding-bottom: 36px; */
+  max-width: 496px;
+  width: 100%;
+  /* box-sizing: border-box; */
+}
+
+.modal__title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* align-content: center; */
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  /* padding: 32px 50px; */
+  max-width: 630px;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 24px;
+}
+
+.modal__close-btn {
+  /* background-image: url(../images/close-btn_x.svg); */
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  align-self: flex-start;
+  opacity: 40%;
+}
+
+.modal__close-btn:hover {
+  transition: opacity 0.925s;
+  opacity: 100%;
+}
+
+.modal__image {
+  object-fit: fill;
+  width: 100%;
+  max-width: 80vw;
+  max-height: 80vh;
+  /* justify-content: center; */
+  border-radius: 8px;
+}
+
+.modal__label {
+}
+
+.modal__input {
+}
+
+.modal__radio-btns {
+}
+
+.modal__legend {
+}
+
+.modal__label_type_radio {
+}
+
+.modal__radio-input {
+}
+
+.modal__submit-btn {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: row;
+  background-color: #212121;
+
+  border-radius: 8px;
+  justify-content: center;
+  padding: 16px 58px;
+  border: none;
+  cursor: pointer;
+  color: #fcf5e5;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}

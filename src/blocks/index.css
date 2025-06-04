@@ -1,10 +1,11 @@
 @import url(../vendor/normalize.css);
-/* @import url(./App.css);
-@import url(./Footer.css); */
+@import url(./App.css);
 @import url(./Header.css);
-/*
 @import url(./ItemCard.css);
-@import url(./ItemModal.css);
-@import url(./Main.css);
-@import url(./ModalWithForm.css); */
 @import url(./WeatherCard.css);
+@import url(./Main.css);
+@import url(./ModalWithForm.css);
+@import url(./ItemModal.css);
+/*
+@import url(./Footer.css);
+*/

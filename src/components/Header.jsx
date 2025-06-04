@@ -1,15 +1,24 @@
 import Logo from "../assets/Logo.svg";
 import ProfileImage from "../assets/profile-image.png";
 
-function Header() {
+function Header({ handleAddClick, weatherData }) {
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <div className="header">
       <div className="header__left-container">
         <img src={Logo} alt="what to wear logo" />
-        <h2 className="header__date-and-location">Date, City</h2>
+        <h2 className="header__date-and-location">{currentDate}, City</h2>
       </div>
       <div className="header__right-container">
-        <button className="header__add-clothes-btn" type="button">
+        <button
+          onClick={handleAddClick}
+          type="button"
+          className="header__add-clothes-btn"
+        >
           + Add clothes
         </button>
         <div className="header__profile">
