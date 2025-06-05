@@ -1,4 +1,11 @@
+.cards__section {
+}
+
 .cards__text {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 100%;
+  margin: 40px 0 34px 0;
 }
 
 .cards__list {

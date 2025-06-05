@@ -1,0 +1,23 @@
+.footer {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  /* position: absolute; */
+  /* bottom: 0; */
+  padding-bottom: 24px;
+  margin-top: auto;
+}
+
+.footer__caption {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer__name {
+  margin: 0;
+}
+
+.footer__year {
+  margin: 0;
+}

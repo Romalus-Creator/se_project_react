@@ -3,8 +3,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 32px 0 28px;
-  margin: 0 auto;
+  padding: 32px 28px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 .header__left-container {
@@ -12,11 +14,16 @@
   flex-direction: row;
 }
 
+.header__image {
+  height: 40px;
+  align-self: center;
+}
+
 .header__date-and-location {
   margin-left: 24px;
-  font-weight: 700;
+  /* font-weight: 700;
+  line-height: 24px; */
   font-size: 20px;
-  line-height: 24px;
 }
 
 .header__right-container {
@@ -27,8 +34,10 @@
 
 .header__add-clothes-btn {
   font-weight: 700;
-  font-size: 20px;
   line-height: 24px;
+  /* font-size: 20px;*/
+  border: none;
+  background-color: transparent;
 }
 
 .header__profile {
@@ -36,8 +45,8 @@
   flex-direction: row;
   align-items: center;
   margin-left: 20px;
-  font-weight: 700;
-  font-size: 20px;
+  /* font-weight: 700;
+  font-size: 20px; */
   line-height: 100%;
 }
 
@@ -45,4 +54,8 @@
   width: 40px;
   height: 40px;
   margin-left: 12px;
+  border-color: #00000080;
+  border: 1px;
+  border-radius: 50%;
+  background-color: #00000033;
 }
