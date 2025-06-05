@@ -1,9 +1,35 @@
 # WTWR (What to Wear?)
 
-## About the project
+## 🌦 About the Project
 
-The idea of the application is pretty simple - we make a call to an API, which then responds with the daily weather forecast. We collect the weather data, process it, and then based on the forecast, we recommend suitable clothing to the user.
+**WTWR (What to Wear?)** is a weather-based clothing recommendation web application. It allows users to get real-time weather forecasts for their location and then recommends appropriate clothing options based on the temperature and conditions.
 
-## Links
+The main goal is to simplify daily clothing decisions by combining weather data with a smart and clean UI.
+
+## 🚀 Features
+
+- Fetches real-time weather data from an external API
+- Shows current temperature and weather conditions
+- Recommends suitable clothing items based on the weather
+- Interactive and responsive user interface
+
+## 🛠️ Technologies and Techniques Used
+
+- **Frontend:** HTML, CSS, JavaScript
+- **Frameworks/Libraries:** React, Webpack, Babel
+- **API Integration:** Weather API (e.g., OpenWeatherMap)
+- **Design:** Figma prototype
+- **Version Control:** Git & GitHub
+
+## 📸 Screenshots
+
+[Homepage Screenshot](./src/assets/wtwrWebpage.png)
+
+## 🌐 GitHub Page
+
+[Visit the Live App](https://your-github-username.github.io/your-repo-name/)
+
+## 📎 Links
 
 - [Figma Design](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR)
+- [GitHub Repository](https://github.com/your-username/your-repo)

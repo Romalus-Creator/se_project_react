@@ -12,9 +12,11 @@ function ModalWithForm({
       <form action="" className="modal__form">
         <div className="modal__title">
           <h2 className="modal__header">{title}</h2>
-          <button onClick={handleCloseClick} className="modal__close-btn">
-            get icon
-          </button>
+          <button
+            type="button"
+            onClick={handleCloseClick}
+            className="modal__close-btn"
+          ></button>
         </div>
         {children}
         <button type="submit" className="modal__submit-btn">

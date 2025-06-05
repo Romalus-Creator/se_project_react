@@ -3,9 +3,13 @@
   display: flex;
   flex-direction: column;
   max-width: 1440px;
+  height: 822px;
   margin: 0 auto;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 500;
+  /* position: relative; */
+  padding: 0 40px;
 }
 
 .page__content {
-  padding: 0 40px;
 }

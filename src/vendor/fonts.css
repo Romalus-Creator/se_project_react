@@ -1,0 +1,25 @@
+/* UI text style 1 / 20-24 Bold / Cabinet Grotesk */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/cabinet-grotesk/CabinetGrotesk-Bold.otf") format("truetype");
+}
+
+/* UI text style 2 / 16-20 Medium / Cabinet Grotesk */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./fonts/cabinet-grotesk/CabinetGrotesk-Medium.otf")
+    format("truetype");
+}
+
+/* UI text style 2 Bold / 16-20 Bold / Cabinet Grotesk */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/cabinet-grotesk/CabinetGrotesk-Medium.otf")
+    format("truetype");
+}

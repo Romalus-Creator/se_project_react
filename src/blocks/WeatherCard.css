@@ -9,6 +9,8 @@
 .weather-card__temperature {
   font-size: 36px;
   line-height: 40px;
+  font-weight: 700;
+  color: #fff;
   margin: 0;
   position: absolute;
   top: 20px;
