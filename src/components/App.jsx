@@ -23,7 +23,7 @@ function App() {
   };
 
   const handleAddClick = () => {
-    setActiveModal("add-garment");
+    setActiveModal("isOpen");
   };
 
   const closeModal = () => {
@@ -47,6 +47,7 @@ function App() {
       <ModalWithForm
         title="New garment"
         submitBtnText="Add garment"
+        // isOpen={activeModal === "add-garment"}
         activeModal={activeModal}
         handleCloseClick={closeModal}
       >
@@ -82,22 +83,43 @@ function App() {
         </div>
         <fieldset className="modal__radio-btns">
           <legend className="modal__legend">Select the weather type:</legend>
-          <label htmlFor="hot" className="modal__label modal__label_type_radio">
-            <input id="hot" type="radio" className="modal__radio-input" />
+          <label
+            name="add-garment"
+            htmlFor="hot"
+            className="modal__label modal__label_type_radio"
+          >
+            <input
+              name="add-garment"
+              id="hot"
+              type="radio"
+              className="modal__radio-input"
+            />
             hot
           </label>
           <label
+            name="add-garment"
             htmlFor="warm"
             className="modal__label modal__label_type_radio"
           >
-            <input id="warm" type="radio" className="modal__radio-input" />
+            <input
+              name="add-garment"
+              id="warm"
+              type="radio"
+              className="modal__radio-input"
+            />
             warm
           </label>
           <label
+            name="add-garment"
             htmlFor="cold"
             className="modal__label modal__label_type_radio"
           >
-            <input id="cold" type="radio" className="modal__radio-input" />
+            <input
+              name="add-garment"
+              id="cold"
+              type="radio"
+              className="modal__radio-input"
+            />
             cold
           </label>
         </fieldset>
