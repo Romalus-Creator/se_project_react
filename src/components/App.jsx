@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import Main from "./Main.jsx";
 import ModalWithForm from "./ModalWithForm.jsx";
@@ -23,7 +22,7 @@ function App() {
   };
 
   const handleAddClick = () => {
-    setActiveModal("isOpen");
+    setActiveModal("add-garment");
   };
 
   const closeModal = () => {
@@ -47,8 +46,7 @@ function App() {
       <ModalWithForm
         title="New garment"
         submitBtnText="Add garment"
-        // isOpen={activeModal === "add-garment"}
-        activeModal={activeModal}
+        isOpen={activeModal === "add-garment"}
         handleCloseClick={closeModal}
       >
         <div className="modal__label-container">

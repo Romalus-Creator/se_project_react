@@ -2,11 +2,11 @@ function ModalWithForm({
   children,
   title,
   submitBtnText,
-  activeModal,
+  isOpen,
   handleCloseClick,
 }) {
   return (
-    <div className={`modal ${activeModal === "isOpen" ? "modal_opened" : ""}`}>
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <form action="" className="modal__form">
         <div className="modal__title">
           <h2 className="modal__header">{title}</h2>
