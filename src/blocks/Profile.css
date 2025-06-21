@@ -1,5 +1,11 @@
 .profile {
-  display: flex;
+  /*TODO: See if this fits Figma specs. Works visually but may need to refine this height solution.*/
+  /* height: 80%; */
+  display: grid;
+  grid-template-columns: max-content 3fr;
+  gap: 20px 20px;
+  margin: 0;
+  padding: 0;
 }
 
 .profile__sidebar {

@@ -1,0 +1,23 @@
+.clothes-section {
+}
+
+.clothes-section__header {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16px;
+  font-size: 20px;
+  line-height: 100%;
+  font-weight: 700;
+}
+
+.clothes-section__items {
+  margin-right: 20px;
+}
+
+.clothes-section__button {
+  border: none;
+  color: #00000060;
+  font-weight: 700;
+  padding: 0;
+  background-color: transparent;
+}
