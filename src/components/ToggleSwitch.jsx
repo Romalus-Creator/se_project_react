@@ -32,14 +32,4 @@ function ToggleSwitch() {
   );
 }
 
-// const Checkbox = () => {
-//   return (
-// <div>
-//       <Checkbox label="My Value" value={checked} onChange={handleChange} />
-
-//       <p>Is "My Value" checked? {checked.toString()}</p>
-//     </div>
-//   );
-// };
-
 export default ToggleSwitch;

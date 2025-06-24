@@ -40,6 +40,11 @@
   background-color: transparent;
 }
 
+.header__link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .header__profile {
   display: flex;
   flex-direction: row;

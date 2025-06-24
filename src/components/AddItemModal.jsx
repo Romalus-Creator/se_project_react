@@ -117,7 +117,7 @@ function AddItemModal({ handleCloseClick, isOpen, onAddItemModalSubmit }) {
             onChange={handleWeatherChange}
             checked={weather === "cold"}
           />
-          colds
+          cold
         </label>
       </fieldset>
     </ModalWithForm>

@@ -10,6 +10,7 @@ import CurrentTemperatureContext from "../contexts/CurrentTemperatureUnitContext
 import AddItemModal from "../components/AddItemModal.jsx";
 import { defaultClothingItems } from "../utils/constants.js";
 import Profile from "./Profile.jsx";
+import { getItems, postItem, deleteItem } from "../utils/api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -22,7 +23,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -39,25 +40,57 @@ function App() {
     setActiveModal("add-garment");
   };
 
+  //TODO: RESET NAME, IMAGE, AND RADIO BTN TO "" AFTER CLOSING MODAL.
   const closeModal = () => {
     setActiveModal("");
   };
 
   const handleAddItemModalSubmit = ({ name, weather, imageUrl }) => {
-    //TODO: Will need to remove newId once mock server is established on this project.
     const newId = Math.max(...clothingItems.map((item) => item._id)) + 1;
     //Using the formula with oldItems below prevents 'stale state values' from being used when adding new item.
-    setClothingItems((oldItems) => {
-      [{ _id: newId, name, weather, link: imageUrl }, ...oldItems];
-    });
+    postItem({ name, weather, imageUrl })
+      .then(({ name, weather, imageUrl }) => {
+        setClothingItems((oldItems) => {
+          return [...oldItems, { _id: newId, name, weather, imageUrl }];
+        });
+      })
+      .catch(console.error);
+
     closeModal();
   };
 
+  const handleDeleteItemModalSubmit = (evt) => {
+    const _id = evt.currentTarget.value;
+    console.log(`before deleteItem: ${_id}`);
+    clothingItems.pop();
+    deleteItem({ _id })
+      .then(() => {
+        setClothingItems((clothingItems) => {
+          return [...clothingItems];
+        });
+      })
+      .catch(console.error);
+    closeModal();
+  };
+
+  // POST Clothing Items API
+  useEffect(() => {}, []);
+
+  //Weather Data API
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+      })
+      .catch(console.error);
+  }, []);
+
+  // GET Clothing Items API
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
       })
       .catch(console.error);
   }, []);
@@ -79,7 +112,15 @@ function App() {
               />
             }
           />
-          <Route path="/profile" element={<Profile></Profile>}></Route>
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                handleCardClick={handleCardClick}
+                clothingItems={clothingItems}
+              ></Profile>
+            }
+          ></Route>
         </Routes>
         <Footer />
         <AddItemModal
@@ -91,6 +132,7 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           handleCloseClick={closeModal}
+          handleDeleteClick={handleDeleteItemModalSubmit}
         />
       </div>
     </CurrentTemperatureContext.Provider>

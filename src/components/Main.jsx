@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import WeatherCard from "./WeatherCard.jsx";
 import ItemCard from "./ItemCard.jsx";
 import CurrentTemperatureContext from "../contexts/CurrentTemperatureUnitContext.js";
@@ -24,7 +24,7 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
                 <ItemCard
                   key={item._id}
                   item={item}
-                  onCardClick={handleCardClick}
+                  handleCardClick={handleCardClick}
                 />
               );
             })}
