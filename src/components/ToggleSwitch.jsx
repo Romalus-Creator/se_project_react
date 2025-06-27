@@ -19,7 +19,7 @@ function ToggleSwitch() {
           currentTemperatureUnit === "F" ? "toggle-switch_temp-icon" : ""
         }`}
       >
-        {/* {console.log(checked)}*/}F
+        F
       </span>
       <span
         className={`toggle-switch_C  ${

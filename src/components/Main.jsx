@@ -19,6 +19,7 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
             .filter((item) => {
               return item.weather === weatherData.type;
             })
+            .sort((a, b) => b._id - a._id)
             .map((item) => {
               return (
                 <ItemCard

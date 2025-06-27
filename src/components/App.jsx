@@ -51,22 +51,21 @@ function App() {
     postItem({ name, weather, imageUrl })
       .then(({ name, weather, imageUrl }) => {
         setClothingItems((oldItems) => {
-          return [...oldItems, { _id: newId, name, weather, imageUrl }];
+          return [{ _id: newId, name, weather, imageUrl }, ...oldItems];
         });
       })
       .catch(console.error);
-
     closeModal();
   };
 
   const handleDeleteItemModalSubmit = (evt) => {
     const _id = evt.currentTarget.value;
-    console.log(`before deleteItem: ${_id}`);
-    clothingItems.pop();
     deleteItem({ _id })
       .then(() => {
         setClothingItems((clothingItems) => {
-          return [...clothingItems];
+          return clothingItems.filter((item) => {
+            return item._id !== parseInt(_id);
+          });
         });
       })
       .catch(console.error);
@@ -116,6 +115,7 @@ function App() {
             path="/profile"
             element={
               <Profile
+                handleAddClick={handleAddClick}
                 handleCardClick={handleCardClick}
                 clothingItems={clothingItems}
               ></Profile>

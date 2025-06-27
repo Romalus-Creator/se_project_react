@@ -20,12 +20,11 @@ function AddItemModal({ handleCloseClick, isOpen, onAddItemModalSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitted!");
+    //reset the inputs
+    setName("");
+    setImageUrl("");
     //update clothingItems array & closeModal
     onAddItemModalSubmit({ name, weather, imageUrl });
-    //reset the inputs
-    handleNameChange(e);
-    handleImageUrlChange(e);
   };
   return (
     <ModalWithForm

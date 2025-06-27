@@ -38,6 +38,7 @@
   /* font-size: 20px;*/
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .header__link {
