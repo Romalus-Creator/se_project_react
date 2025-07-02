@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalWithForm from "../components/ModalWithForm";
 
 function AddItemModal({ handleCloseClick, isOpen, onAddItemModalSubmit }) {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
+
+  useEffect(() => {
+    setName("");
+    setImageUrl("");
+    setWeather("");
+  }, [isOpen]); // watch the opening state
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -20,12 +26,10 @@ function AddItemModal({ handleCloseClick, isOpen, onAddItemModalSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //reset the inputs
-    setName("");
-    setImageUrl("");
     //update clothingItems array & closeModal
     onAddItemModalSubmit({ name, weather, imageUrl });
   };
+
   return (
     <ModalWithForm
       title="New garment"

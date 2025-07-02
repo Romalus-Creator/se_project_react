@@ -53,9 +53,9 @@ function App() {
         setClothingItems((oldItems) => {
           return [{ _id: newId, name, weather, imageUrl }, ...oldItems];
         });
+        closeModal();
       })
       .catch(console.error);
-    closeModal();
   };
 
   const handleDeleteItemModalSubmit = (evt) => {
@@ -67,13 +67,10 @@ function App() {
             return item._id !== parseInt(_id);
           });
         });
+        closeModal();
       })
       .catch(console.error);
-    closeModal();
   };
-
-  // POST Clothing Items API
-  useEffect(() => {}, []);
 
   //Weather Data API
   useEffect(() => {
