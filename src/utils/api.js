@@ -30,4 +30,4 @@ function deleteItem({ _id }) {
   }).then((res) => checkResponse(res));
 }
 
-export { getItems, postItem, deleteItem };
+export { getItems, postItem, deleteItem, checkResponse };

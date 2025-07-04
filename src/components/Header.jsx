@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/Logo.svg";
-import ProfileImage from "../assets/profile-image.png";
+import ProfileImage from "../assets/RomanSmallCircleImage.gif";
 import ToggleSwitch from "./ToggleSwitch";
 
 function Header({ handleAddClick, weatherData }) {

@@ -21,7 +21,8 @@
   border-radius: 16px;
   background-color: #fff;
   max-width: 498px;
-  width: 100%;
+  max-height: 610px;
+  /* width: 100%; */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -75,14 +76,17 @@
   width: 100%;
   max-width: 80vw;
   max-height: 80vh;
-  /* justify-content: center; */
-  border-radius: 8px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 .modal__text-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: #fff;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
 }
 
 .modal__caption {
