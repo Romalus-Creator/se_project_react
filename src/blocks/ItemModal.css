@@ -21,11 +21,12 @@
   border-radius: 16px;
   background-color: #fff;
   max-width: 498px;
-  max-height: 610px;
+  height: 610px;
   /* width: 100%; */
   position: relative;
   display: flex;
   flex-direction: column;
+  object-fit: contain;
 }
 
 .modal__title {
@@ -73,9 +74,9 @@
 
 .modal__image {
   object-fit: fill;
-  width: 100%;
-  max-width: 80vw;
-  max-height: 80vh;
+  width: 498px;
+  height: 498px;
+
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
 }
