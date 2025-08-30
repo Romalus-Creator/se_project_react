@@ -8,6 +8,8 @@ import { getWeather, filterWeatherData } from "../utils/weatherApi.js";
 import Footer from "./Footer.jsx";
 import CurrentTemperatureContext from "../contexts/CurrentTemperatureUnitContext.js";
 import AddItemModal from "../components/AddItemModal.jsx";
+import RegisterModal from "./RegisterModal.jsx";
+import LoginModal from "./LoginModal.jsx";
 import { defaultClothingItems } from "../utils/constants.js";
 import Profile from "./Profile.jsx";
 import { getItems, postItem, deleteItem } from "../utils/api.js";
@@ -24,6 +26,9 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+
+  // User data for registration and logins
+  const [userData, setUserData] = useState({ username: "", email: "" });
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -91,6 +96,60 @@ function App() {
       .catch(console.error);
   }, []);
 
+  //-----------------------------------------------------------------------------------------------------------------------------------------
+  // For RegisterModal.jsx. To create a user for future logins.
+  const handleRegisterModalSubmit = ({
+    email,
+    password,
+    confirmPassword,
+    name,
+    AvatarUrl,
+  }) => {
+    if (password === confirmPassword) {
+      auth
+        .register(email, password, name, AvatarUrl)
+        .then(() => {
+          console.log(`registration should be authorized now!`);
+        })
+        .catch(console.error);
+    }
+  };
+
+  const handleLoginModalSubmit = ({ username, password }) => {
+    if (!username || !password) {
+      return;
+    }
+    auth
+      .login(username, password)
+      .then((data) => {
+        if (data.jwt) {
+          setToken(data.jwt);
+          setUserData(data.user);
+          setIsLoggedIn(true);
+
+          // navigate to the location that is stored in state. If
+          // there is no stored location, we default to
+          // redirecting to /ducks.
+          const redirectPath = location.state?.from?.pathname || "/ducks";
+          navigate(redirectPath);
+        }
+      })
+      .catch(console.error);
+  };
+
+  // useEffect(() => {
+  //   const jwt = getToken();
+  //   if (!jwt) {
+  //     return;
+  //   }
+  //   api
+  //     .getUserInfo(jwt)
+  //     .then(({ username, email }) => {
+  //       setIsLoggedIn(true);
+  //       setUserData({ username, email });
+  //     })
+  //     .catch(console.error);
+  // }, []);
   return (
     <CurrentTemperatureContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -131,6 +190,14 @@ function App() {
           handleCloseClick={closeModal}
           handleDeleteClick={handleDeleteItemModalSubmit}
         />
+        <RegisterModal>
+          isOpen={true}
+          onRegisterModalSubmit={handleRegisterModalSubmit}
+        </RegisterModal>
+        <LoginModal>
+          isOpen={true}
+          onLoginModalSubmit={handleLoginModalSubmit}
+        </LoginModal>
       </div>
     </CurrentTemperatureContext.Provider>
   );

@@ -27,9 +27,13 @@ The main goal is to simplify daily clothing decisions by combining weather data 
 
 ## 🌐 GitHub Page
 
-[Visit the Live App](https://your-github-username.github.io/your-repo-name/)
+[Visit the Live App](https://github.com/Romalus-Creator/se_project_react)
 
 ## 📎 Links
 
 - [Figma Design](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR)
 - [GitHub Repository](https://github.com/your-username/your-repo)
+
+## Backend Repo
+
+(https://github.com/Romalus-Creator/se_project_express)
