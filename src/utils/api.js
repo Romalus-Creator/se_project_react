@@ -30,4 +30,17 @@ function deleteItem({ _id }) {
   }).then((res) => checkResponse(res));
 }
 
-export { getItems, postItem, deleteItem, checkResponse };
+const getUserInfo = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  });
+};
+
+export { checkResponse, getItems, postItem, deleteItem, getUserInfo };
