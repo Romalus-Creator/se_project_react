@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
+import { Link } from "react-router-dom";
 
 function Sidebar({ handleEditProfileClick, handleLogout }) {
   const { currentUser } = useContext(CurrentUserContext);
@@ -25,9 +26,11 @@ function Sidebar({ handleEditProfileClick, handleLogout }) {
         >
           Change profile data
         </button>
-        <button className="sidebar__option-btn" onClick={handleLogout}>
-          Log out
-        </button>
+        <Link to="/">
+          <button className="sidebar__option-btn" onClick={handleLogout}>
+            Log out
+          </button>
+        </Link>
       </div>
     </div>
   );

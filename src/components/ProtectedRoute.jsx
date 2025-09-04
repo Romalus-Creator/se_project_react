@@ -23,7 +23,7 @@ function ProtectedRoute({ children, anonymous = false }) {
     // This allows us to redirect them appropriately after they
     // log in.
     // If user isn't logged in, return a Navigate component that sends the user to /login
-    return <Navigate to="/login" state={{ from: location }} />;
+    return <Navigate to="/" state={{ from: location }} />;
   }
 
   // Otherwise, render the protected route's child component.

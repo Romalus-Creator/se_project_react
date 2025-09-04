@@ -1,10 +1,17 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppContext from "../contexts/AppContext";
 import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 import ItemCard from "./ItemCard.jsx";
 
-function ClothesSection({ handleCardClick, clothingItems, handleAddClick }) {
+function ClothesSection({
+  handleCardClick,
+  clothingItems,
+  handleAddClick,
+  onCardLike,
+}) {
   const { currentUser } = useContext(CurrentUserContext);
+
+  useEffect(() => {}, [currentUser]);
 
   const userClothingItems = clothingItems.filter((item) => {
     return item.owner === currentUser._id;
@@ -26,8 +33,8 @@ function ClothesSection({ handleCardClick, clothingItems, handleAddClick }) {
               <ItemCard
                 key={item._id}
                 item={item}
-                //TODO: pass as prop
                 handleCardClick={handleCardClick}
+                onCardLike={onCardLike}
               />
             );
           })}

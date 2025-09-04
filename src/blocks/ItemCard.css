@@ -9,9 +9,15 @@
   justify-content: center;
 }
 
-.card__name {
+.card__name-section {
   position: absolute;
   top: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card__name {
   margin: 0;
   background-color: #fff;
   color: #00000099;
@@ -24,4 +30,44 @@
 .card__image {
   width: 100%;
   border-radius: 19px;
+}
+
+.card__like-btn {
+  background-image: url(../assets/like_heart_icon.svg);
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 40%;
+  width: 23px;
+  height: 20px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.card__like-btn:hover {
+  opacity: 100%;
+  transition: 1s;
+}
+
+.card__like-btn_clicked {
+  background-image: url(../assets/like_heart_red_icon.svg);
+  opacity: 100%;
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 23px;
+  height: 20px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.card__like-btn_clicked:hover {
+  background-image: url(../assets/like_heart_red_hover_icon.svg);
+  opacity: 50%;
 }

@@ -20,7 +20,7 @@ import { defaultClothingItems } from "../utils/constants.js";
 import AppContext from "../contexts/AppContext";
 import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 import ProtectedRoute from "./ProtectedRoute";
-import { setToken, getToken } from "../utils/token";
+import { setToken, getToken, removeToken } from "../utils/token";
 import Profile from "./Profile.jsx";
 import { getItems, postItem, deleteItem } from "../utils/api.js";
 import * as api from "../utils/api";
@@ -49,6 +49,7 @@ function App() {
     email: "",
     avatar: "",
   });
+
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
       ? setCurrentTemperatureUnit("C")
@@ -69,27 +70,25 @@ function App() {
     setActiveModal("");
   };
 
-  const handleAddItemModalSubmit = ({ name, weather, imageUrl }) => {
-    const newId = Math.max(...clothingItems.map((item) => item._id)) + 1;
+  const handleAddItemModalSubmit = ({ name, weather, imageUrl, token }) => {
     //Using the formula with oldItems below prevents 'stale state values' from being used when adding new item.
-    postItem({ name, weather, imageUrl, token })
-      .then(({ name, weather, imageUrl }) => {
-        setClothingItems((oldItems) => {
-          return [{ _id: newId, name, weather, imageUrl }, ...oldItems];
-        });
+    api
+      .postItem({ name, weather, imageUrl, token })
+      .then((newItem) => {
+        setClothingItems((oldItems) => [newItem, ...oldItems]);
         closeModal();
       })
       .catch(console.error);
+    console.log(clothingItems);
   };
 
   const handleDeleteItemModalSubmit = (evt) => {
     const _id = evt.currentTarget.value;
-    deleteItem({ _id, token })
+    api
+      .deleteItem({ _id, token })
       .then(() => {
         setClothingItems((clothingItems) => {
-          return clothingItems.filter((item) => {
-            return item._id !== parseInt(_id);
-          });
+          return clothingItems.filter((item) => item._id !== _id);
         });
         closeModal();
       })
@@ -108,7 +107,8 @@ function App() {
 
   // GET Clothing Items API
   useEffect(() => {
-    getItems()
+    api
+      .getItems()
       .then((data) => {
         setClothingItems(data);
       })
@@ -140,6 +140,7 @@ function App() {
           setToken(token);
           setIsLoggedIn(true);
           setUserData({ name, email });
+          closeModal();
         }
       })
       .catch((err) => {
@@ -148,7 +149,6 @@ function App() {
   };
 
   const handleEditProfileModalSubmit = ({ name, avatar }) => {
-    console.log(`token before api update User call: ${token}`);
     api
       .updateUserInfo({ name, avatar, token })
       .then(({ name, avatar }) => {
@@ -159,6 +159,8 @@ function App() {
         console.error("Login error:", err);
       });
   };
+
+  //Checks if the user is logged in.
   useEffect(() => {
     if (!token) {
       return;
@@ -186,9 +188,34 @@ function App() {
   };
 
   const handleLogout = () => {
-    console.log("make the user logout!!");
+    setIsLoggedIn(false);
+    removeToken();
   };
 
+  const handleCardLike = ({ _id, isLiked, token }) => {
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's owner to the card's likes array
+        api
+          // the first argument is the card's owner
+          .likeItem({ _id, token })
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        api
+          // the first argument is the card's id
+          .dislikeItem({ _id, token })
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
   return (
     <CurrentUserContext.Provider value={{ currentUser, token }}>
       <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
@@ -210,6 +237,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -223,6 +251,7 @@ function App() {
                       handleLogout={handleLogout}
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
+                      onCardLike={handleCardLike}
                     ></Profile>
                   </ProtectedRoute>
                 }

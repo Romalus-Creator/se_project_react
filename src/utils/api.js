@@ -70,6 +70,32 @@ const updateUserInfo = ({ token, name, avatar }) => {
   });
 };
 
+const likeItem = ({ _id, token }) => {
+  return fetch(`${baseUrl}/items/${_id}/likes`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  });
+};
+
+const dislikeItem = ({ _id, token }) => {
+  return fetch(`${baseUrl}/items/${_id}/likes`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  });
+};
+
 export {
   checkResponse,
   getItems,
@@ -77,4 +103,6 @@ export {
   deleteItem,
   getUserInfo,
   updateUserInfo,
+  likeItem,
+  dislikeItem,
 };
