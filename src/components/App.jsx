@@ -25,6 +25,7 @@ import Profile from "./Profile.jsx";
 import { getItems, postItem, deleteItem } from "../utils/api.js";
 import * as api from "../utils/api";
 import * as auth from "../utils/auth";
+import EditProfileModal from "./EditProfileModal.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -73,7 +74,6 @@ function App() {
     //Using the formula with oldItems below prevents 'stale state values' from being used when adding new item.
     postItem({ name, weather, imageUrl, token })
       .then(({ name, weather, imageUrl }) => {
-        console.log(token);
         setClothingItems((oldItems) => {
           return [{ _id: newId, name, weather, imageUrl }, ...oldItems];
         });
@@ -122,9 +122,7 @@ function App() {
       .register(name, avatar, email, password)
       .then(({ name, password }) => {
         handleLoginModalSubmit({ name, password });
-        console.log(`registration should be authorized now!`);
         closeModal();
-        console.log(`handleRegisterModalSubmit isLoggedIn: ${isLoggedIn}`);
       })
       .catch(console.error);
   };
@@ -139,13 +137,9 @@ function App() {
       .login(email, password)
       .then(({ token, name, email }) => {
         if (token) {
-          console.log(token);
           setToken(token);
           setIsLoggedIn(true);
-          // navigate to the location that is stored in state. If
-          // there is no stored location, we default to
-          // const redirectPath = location.state?.from?.pathname || "/";
-          // navigate(redirectPath);
+          setUserData({ name, email });
         }
       })
       .catch((err) => {
@@ -153,6 +147,18 @@ function App() {
       });
   };
 
+  const handleEditProfileModalSubmit = ({ name, avatar }) => {
+    console.log(`token before api update User call: ${token}`);
+    api
+      .updateUserInfo({ name, avatar, token })
+      .then(({ name, avatar }) => {
+        setCurrentUser({ name, avatar });
+        setUserData({ name });
+      })
+      .catch((err) => {
+        console.error("Login error:", err);
+      });
+  };
   useEffect(() => {
     if (!token) {
       return;
@@ -174,6 +180,15 @@ function App() {
   const handleRegisterClick = () => {
     setActiveModal("register");
   };
+
+  const handleEditProfileClick = () => {
+    setActiveModal("editProfile");
+  };
+
+  const handleLogout = () => {
+    console.log("make the user logout!!");
+  };
+
   return (
     <CurrentUserContext.Provider value={{ currentUser, token }}>
       <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
@@ -204,6 +219,8 @@ function App() {
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Profile
                       handleAddClick={handleAddClick}
+                      handleEditProfileClick={handleEditProfileClick}
+                      handleLogout={handleLogout}
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
                     ></Profile>
@@ -239,6 +256,11 @@ function App() {
               handleCloseClick={closeModal}
               onLoginModalSubmit={handleLoginModalSubmit}
             ></LoginModal>
+            <EditProfileModal
+              isOpen={activeModal === "editProfile"}
+              handleCloseClick={closeModal}
+              onEditProfileModalSubmit={handleEditProfileModalSubmit}
+            ></EditProfileModal>
           </div>
         </CurrentTemperatureContext.Provider>
       </AppContext.Provider>

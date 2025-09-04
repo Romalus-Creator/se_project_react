@@ -20,11 +20,7 @@ function Header({
   const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
   const { currentUser } = useContext(CurrentUserContext);
 
-  const currentUserInitial = currentUser.name[0];
-  const determinedAvatar =
-    currentUser.avatar !== "" && currentUser.avatar !== "undefined"
-      ? currentUser.avatar
-      : currentUserInitial;
+  const currentUserInitial = currentUser.name ? currentUser.name[0] : "";
 
   return (
     <div className="header">

@@ -1,4 +1,4 @@
-.sidebar {
+.sidebar__profile-section {
   display: flex;
   flex-direction: row;
   /* TODO: Try to make this margin-right a space with Flex instead. */
@@ -13,10 +13,42 @@
   margin-right: 16px;
 }
 
+.sidebar__profile-image-sub {
+  width: 56px;
+  height: 56px;
+  border: 1px solid #00000050;
+  border-radius: 50%;
+  margin-right: 16px;
+  background-color: #00000033;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 700;
+}
+
 .sidebar__username {
   margin: 0;
   align-self: center;
   font-weight: 700;
   font-size: 20px;
   line-height: 100%;
+}
+
+.sidebar__options-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 24px;
+}
+
+.sidebar__option-btn {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-bottom: 8px;
+  padding: 0;
 }

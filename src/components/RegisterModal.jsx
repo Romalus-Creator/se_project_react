@@ -32,7 +32,6 @@ function RegisterModal({ isOpen, handleCloseClick, onRegisterModalSubmit }) {
 
   const handleSubmit = (e) => {
     const { name, avatar, email, password } = data;
-    console.log(`handleSubmit password: ${password}`);
     e.preventDefault();
     onRegisterModalSubmit({ name, avatar, email, password });
     resetData();

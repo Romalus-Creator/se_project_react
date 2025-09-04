@@ -1,11 +1,20 @@
 import Sidebar from "./Sidebar.jsx";
 import ClothesSection from "./ClothesSection.jsx";
 
-function Profile({ handleCardClick, clothingItems, handleAddClick }) {
+function Profile({
+  handleCardClick,
+  clothingItems,
+  handleAddClick,
+  handleEditProfileClick,
+  handleLogout,
+}) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <Sidebar></Sidebar>
+        <Sidebar
+          handleEditProfileClick={handleEditProfileClick}
+          handleLogout={handleLogout}
+        ></Sidebar>
       </section>
       <section className="profile__clothing-items">
         <ClothesSection

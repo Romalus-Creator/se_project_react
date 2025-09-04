@@ -27,7 +27,7 @@ function postItem({ name, weather, imageUrl, token }) {
   }).then((res) => checkResponse(res));
 }
 
-//  TODO - API NEEDS JWT TOKEN
+//  API NEEDS JWT TOKEN
 function deleteItem({ _id, token }) {
   return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
@@ -38,7 +38,7 @@ function deleteItem({ _id, token }) {
   }).then((res) => checkResponse(res));
 }
 
-//  TODO - API NEEDS JWT TOKEN
+//  API NEEDS JWT TOKEN
 const getUserInfo = (token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
@@ -52,4 +52,29 @@ const getUserInfo = (token) => {
   });
 };
 
-export { checkResponse, getItems, postItem, deleteItem, getUserInfo };
+//  API NEEDS JWT TOKEN
+const updateUserInfo = ({ token, name, avatar }) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      avatar,
+    }),
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  });
+};
+
+export {
+  checkResponse,
+  getItems,
+  postItem,
+  deleteItem,
+  getUserInfo,
+  updateUserInfo,
+};

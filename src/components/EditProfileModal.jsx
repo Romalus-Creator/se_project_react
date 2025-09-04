@@ -4,15 +4,18 @@ import { useState, useEffect } from "react";
 import "../blocks/LoginModal.css";
 import ModalWithForm from "../components/ModalWithForm";
 
-const LoginModal = ({ isOpen, handleCloseClick, onLoginModalSubmit }) => {
+const EditProfileModal = ({
+  isOpen,
+  handleCloseClick,
+  onEditProfileModalSubmit,
+}) => {
   const [data, setData] = useState({
     name: "",
-    email: "",
-    password: "",
+    avatar: "",
   });
 
   const resetData = () => {
-    setData({ name: "", email: "", password: "" });
+    setData({ name: "", avatar: "" });
   };
 
   useEffect(() => {}, [isOpen]); // watch the opening state
@@ -27,54 +30,47 @@ const LoginModal = ({ isOpen, handleCloseClick, onLoginModalSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLoginModalSubmit(data);
+    onEditProfileModalSubmit(data);
     resetData();
   };
   return (
     <ModalWithForm
-      title="Log in"
-      submitBtnText="Log in"
+      title="Change profile data"
+      submitBtnText="Save Changes"
       isOpen={isOpen}
       handleCloseClick={handleCloseClick}
       onSubmit={handleSubmit}
     >
       <div className="modal__label-container ">
-        <label className="modal__label" htmlFor="email">
-          Email
+        <label className="modal__label" htmlFor="name">
+          Name
         </label>
         <input
-          placeholder="Email"
+          placeholder="Name"
           className="modal__input"
-          id="email"
-          name="email"
-          type="email"
-          value={data.email}
+          id="name"
+          name="name"
+          type="text"
+          value={data.name}
           onChange={handleChange}
         />
       </div>
       <div className="modal__label-container ">
-        <label className="modal__label" htmlFor="password">
-          Password
+        <label className="modal__label" htmlFor="avatar">
+          Avatar URL
         </label>
         <input
-          placeholder="Password"
+          placeholder="Avatar URL"
           className="modal__input"
-          id="password"
-          name="password"
-          type="password"
-          value={data.password}
+          id="avatar"
+          name="avatar"
+          type="url"
+          value={data.avatar}
           onChange={handleChange}
         />
-      </div>
-
-      <div className="login__signup">
-        <p>or</p>
-        <Link to="/register" className="signup__link">
-          Register
-        </Link>
       </div>
     </ModalWithForm>
   );
 };
 
-export default LoginModal;
+export default EditProfileModal;
