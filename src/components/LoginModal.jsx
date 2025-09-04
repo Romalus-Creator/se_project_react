@@ -6,9 +6,14 @@ import ModalWithForm from "../components/ModalWithForm";
 
 const LoginModal = ({ isOpen, handleCloseClick, onLoginModalSubmit }) => {
   const [data, setData] = useState({
+    name: "",
     email: "",
     password: "",
   });
+
+  const resetData = () => {
+    setData({ name: "", email: "", password: "" });
+  };
 
   useEffect(() => {}, [isOpen]); // watch the opening state
 
@@ -22,7 +27,8 @@ const LoginModal = ({ isOpen, handleCloseClick, onLoginModalSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLoginModalSubmit(e);
+    onLoginModalSubmit(data);
+    // resetData();
   };
   return (
     <ModalWithForm

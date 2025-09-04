@@ -65,3 +65,16 @@
   border-radius: 50%;
   background-color: #00000033;
 }
+
+.header__profile-image-sub {
+  width: 40px;
+  height: 40px;
+  margin-left: 12px;
+  border-color: #00000080;
+  border: 1px;
+  border-radius: 50%;
+  background-color: #00000033;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

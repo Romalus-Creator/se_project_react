@@ -11,10 +11,14 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then((res) => checkResponse(res));
 }
 
-function postItem({ name, weather, imageUrl }) {
+//  API NEEDS JWT TOKEN
+function postItem({ name, weather, imageUrl, token }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name,
       imageUrl,
@@ -23,13 +27,18 @@ function postItem({ name, weather, imageUrl }) {
   }).then((res) => checkResponse(res));
 }
 
-function deleteItem({ _id }) {
+//  TODO - API NEEDS JWT TOKEN
+function deleteItem({ _id, token }) {
   return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   }).then((res) => checkResponse(res));
 }
 
+//  TODO - API NEEDS JWT TOKEN
 const getUserInfo = (token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",

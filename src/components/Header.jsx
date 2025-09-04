@@ -4,6 +4,7 @@ import AppContext from "../contexts/AppContext";
 import Logo from "../assets/Logo.svg";
 import ProfileImage from "../assets/RomanSmallCircleImage.gif";
 import ToggleSwitch from "./ToggleSwitch";
+import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 
 function Header({
   handleAddClick,
@@ -17,6 +18,13 @@ function Header({
   });
 
   const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
+  const { currentUser } = useContext(CurrentUserContext);
+
+  const currentUserInitial = currentUser.name[0];
+  const determinedAvatar =
+    currentUser.avatar !== "" && currentUser.avatar !== "undefined"
+      ? currentUser.avatar
+      : currentUserInitial;
 
   return (
     <div className="header">
@@ -43,12 +51,19 @@ function Header({
           </button>
           <Link to="/profile" className="header__link">
             <div className="header__profile">
-              Roman Ehrhardt
-              <img
-                src={ProfileImage}
-                alt="image of the current user"
-                className="header__profile-image"
-              />
+              {currentUser.name}
+              {currentUser.avatar !== "" &&
+              currentUser.avatar !== "undefined" ? (
+                <img
+                  src={currentUser.avatar}
+                  alt="image of the current user"
+                  className="header__profile-image"
+                />
+              ) : (
+                <div className="header__profile-image-sub">
+                  {currentUserInitial}
+                </div>
+              )}
             </div>
           </Link>
         </div>

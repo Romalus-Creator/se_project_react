@@ -14,10 +14,12 @@ function RegisterModal({ isOpen, handleCloseClick, onRegisterModalSubmit }) {
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
-    avatarUrl: "",
+    avatar: "",
   });
 
+  const resetData = () => {
+    setData({ name: "", email: "", password: "", avatar: "" });
+  };
   useEffect(() => {}, [isOpen]); // watch the opening state
 
   const handleChange = (e) => {
@@ -29,8 +31,11 @@ function RegisterModal({ isOpen, handleCloseClick, onRegisterModalSubmit }) {
   };
 
   const handleSubmit = (e) => {
+    const { name, avatar, email, password } = data;
+    console.log(`handleSubmit password: ${password}`);
     e.preventDefault();
-    onRegisterModalSubmit(e);
+    onRegisterModalSubmit({ name, avatar, email, password });
+    resetData();
   };
 
   return (
@@ -70,20 +75,6 @@ function RegisterModal({ isOpen, handleCloseClick, onRegisterModalSubmit }) {
         />
       </div>
       <div className="modal__label-container ">
-        <label className="modal__label" htmlFor="confirmPassword">
-          Confirm password*
-        </label>
-        <input
-          placeholder="Confirm password"
-          className="modal__input"
-          id="confirmPassword"
-          name="confirmPassword"
-          type="password"
-          value={data.confirmPassword}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="modal__label-container ">
         <label className="modal__label" htmlFor="name">
           Name
         </label>
@@ -98,16 +89,16 @@ function RegisterModal({ isOpen, handleCloseClick, onRegisterModalSubmit }) {
         />
       </div>
       <div className="modal__label-container ">
-        <label className="modal__label" htmlFor="avatarUrl">
+        <label className="modal__label" htmlFor="avatar">
           Avatar URL
         </label>
         <input
           placeholder="Avatar URL"
           className="modal__input"
-          id="avatarUrl"
-          name="avatarUrl"
+          id="avatar"
+          name="avatar"
           type="url"
-          value={data.avatarUrl}
+          value={data.avatar}
           onChange={handleChange}
         />
       </div>

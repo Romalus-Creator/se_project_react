@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ModalWithForm from "../components/ModalWithForm";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function AddItemModal({ handleCloseClick, isOpen, onAddItemModalSubmit }) {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
+
+  const { token } = useContext(CurrentUserContext);
 
   useEffect(() => {
     setName("");
@@ -27,7 +30,7 @@ function AddItemModal({ handleCloseClick, isOpen, onAddItemModalSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     //update clothingItems array & closeModal
-    onAddItemModalSubmit({ name, weather, imageUrl });
+    onAddItemModalSubmit({ name, weather, imageUrl, token });
   };
 
   return (
