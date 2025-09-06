@@ -48,6 +48,7 @@ function App() {
     name: "",
     email: "",
     avatar: "",
+    _id: "",
   });
 
   const handleToggleSwitchChange = () => {
@@ -120,8 +121,9 @@ function App() {
   const handleRegisterModalSubmit = ({ name, avatar, email, password }) => {
     auth
       .register(name, avatar, email, password)
-      .then(({ name, password }) => {
-        handleLoginModalSubmit({ name, password });
+      .then(() => {
+        console.log(`registerModal.then pass: ${password}`);
+        handleLoginModalSubmit({ email, password });
         closeModal();
       })
       .catch(console.error);
@@ -135,11 +137,12 @@ function App() {
     }
     auth
       .login(email, password)
-      .then(({ token, name, email }) => {
-        if (token) {
-          setToken(token);
+      .then((data) => {
+        if (data.token) {
           setIsLoggedIn(true);
-          setUserData({ name, email });
+          setUserData(data.name, data.email);
+          setJwt(data.token);
+          setToken(data.token);
           closeModal();
         }
       })
@@ -152,7 +155,7 @@ function App() {
     api
       .updateUserInfo({ name, avatar, token })
       .then(({ name, avatar }) => {
-        setCurrentUser({ name, avatar });
+        setCurrentUser({ name, avatar }, currentUser.email, currentUser._id);
         setUserData({ name });
       })
       .catch((err) => {
@@ -163,7 +166,7 @@ function App() {
   //Checks if the user is logged in.
   useEffect(() => {
     if (!token) {
-      return;
+      return console.log("token is false!");
     }
     api
       .getUserInfo(token)
@@ -189,32 +192,36 @@ function App() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    setCurrentUser("");
     removeToken();
+    setJwt("");
   };
 
   const handleCardLike = ({ _id, isLiked, token }) => {
     // Check if this card is not currently liked
-    !isLiked
-      ? // if so, send a request to add the user's owner to the card's likes array
-        api
-          // the first argument is the card's owner
-          .likeItem({ _id, token })
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === _id ? updatedCard : item))
-            );
-          })
-          .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        api
-          // the first argument is the card's id
-          .dislikeItem({ _id, token })
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === _id ? updatedCard : item))
-            );
-          })
-          .catch((err) => console.log(err));
+    isLoggedIn === true
+      ? !isLiked
+        ? // if so, send a request to add the user's owner to the card's likes array
+          api
+            // the first argument is the card's owner
+            .likeItem({ _id, token })
+            .then((updatedCard) => {
+              setClothingItems((cards) =>
+                cards.map((item) => (item._id === _id ? updatedCard : item))
+              );
+            })
+            .catch((err) => console.log(err))
+        : // if not, send a request to remove the user's id from the card's likes array
+          api
+            // the first argument is the card's id
+            .dislikeItem({ _id, token })
+            .then((updatedCard) => {
+              setClothingItems((cards) =>
+                cards.map((item) => (item._id === _id ? updatedCard : item))
+              );
+            })
+            .catch((err) => console.log(err))
+      : false;
   };
   return (
     <CurrentUserContext.Provider value={{ currentUser, token }}>
@@ -256,12 +263,7 @@ function App() {
                   </ProtectedRoute>
                 }
               ></Route>
-              <Route
-                path="*"
-                element={
-                  isLoggedIn ? <Navigate to="/" /> : <Navigate to="/login" />
-                }
-              />
+              <Route path="*" element={<Navigate to="/" />} />
             </Routes>
             <Footer />
             <AddItemModal
@@ -279,11 +281,13 @@ function App() {
               isOpen={activeModal === "register"}
               handleCloseClick={closeModal}
               onRegisterModalSubmit={handleRegisterModalSubmit}
+              onLoginClick={handleLoginClick}
             ></RegisterModal>
             <LoginModal
               isOpen={activeModal === "login"}
               handleCloseClick={closeModal}
               onLoginModalSubmit={handleLoginModalSubmit}
+              onRegisterClick={handleRegisterClick}
             ></LoginModal>
             <EditProfileModal
               isOpen={activeModal === "editProfile"}

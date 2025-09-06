@@ -8,7 +8,7 @@ function Sidebar({ handleEditProfileClick, handleLogout }) {
   return (
     <div className="sidebar">
       <div className="sidebar__profile-section">
-        {currentUser.avatar !== "" && currentUser.avatar !== "undefined" ? (
+        {currentUser.avatar !== "" && currentUser.avatar !== undefined ? (
           <img
             src={currentUser.avatar}
             alt="The user's profile picture"

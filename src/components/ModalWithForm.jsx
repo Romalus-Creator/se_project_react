@@ -5,6 +5,7 @@ function ModalWithForm({
   isOpen,
   handleCloseClick,
   onSubmit,
+  onClick,
 }) {
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
@@ -18,9 +19,38 @@ function ModalWithForm({
           />
         </div>
         {children}
-        <button type="submit" className="modal__submit-btn">
-          {submitBtnText}
-        </button>
+        {/*check for Login buttons in the Modal first, then register(signup) modal, second, then return a regular submit button last.*/}
+        {submitBtnText === "Log in" ? (
+          <div className="modal__submit-btn-with-redirect">
+            <button type="submit" className="modal__submit-btn">
+              {submitBtnText}
+            </button>
+            <button
+              onClick={onClick}
+              type="button"
+              className="modal__redirect-btn"
+            >
+              or Sign Up
+            </button>
+          </div>
+        ) : submitBtnText === "Sign Up" ? (
+          <div className="modal__submit-btn-with-redirect">
+            <button type="submit" className="modal__submit-btn">
+              {submitBtnText}
+            </button>
+            <button
+              onClick={onClick}
+              type="button"
+              className="modal__redirect-btn"
+            >
+              or Log In
+            </button>
+          </div>
+        ) : (
+          <button type="submit" className="modal__submit-btn">
+            {submitBtnText}
+          </button>
+        )}
       </form>
     </div>
   );

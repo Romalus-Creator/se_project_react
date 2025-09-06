@@ -4,18 +4,20 @@ import { useState, useEffect } from "react";
 import "../blocks/LoginModal.css";
 import ModalWithForm from "../components/ModalWithForm";
 
-const LoginModal = ({ isOpen, handleCloseClick, onLoginModalSubmit }) => {
+const LoginModal = ({
+  isOpen,
+  handleCloseClick,
+  onLoginModalSubmit,
+  onRegisterClick,
+}) => {
   const [data, setData] = useState({
-    name: "",
     email: "",
     password: "",
   });
 
   const resetData = () => {
-    setData({ name: "", email: "", password: "" });
+    setData({ email: "", password: "" });
   };
-
-  useEffect(() => {}, [isOpen]); // watch the opening state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +39,7 @@ const LoginModal = ({ isOpen, handleCloseClick, onLoginModalSubmit }) => {
       isOpen={isOpen}
       handleCloseClick={handleCloseClick}
       onSubmit={handleSubmit}
+      onClick={onRegisterClick}
     >
       <div className="modal__label-container ">
         <label className="modal__label" htmlFor="email">
@@ -65,13 +68,6 @@ const LoginModal = ({ isOpen, handleCloseClick, onLoginModalSubmit }) => {
           value={data.password}
           onChange={handleChange}
         />
-      </div>
-
-      <div className="login__signup">
-        <p>or</p>
-        <Link to="/register" className="signup__link">
-          Register
-        </Link>
       </div>
     </ModalWithForm>
   );

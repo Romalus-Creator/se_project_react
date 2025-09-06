@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import "../blocks/RegisterModal.css";
 import ModalWithForm from "../components/ModalWithForm";
 
-function RegisterModal({ isOpen, handleCloseClick, onRegisterModalSubmit }) {
-  const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [weather, setWeather] = useState("");
-
+function RegisterModal({
+  isOpen,
+  handleCloseClick,
+  onRegisterModalSubmit,
+  onLoginClick,
+}) {
   // for user data when user registers new account
   const [data, setData] = useState({
     name: "",
@@ -20,7 +21,6 @@ function RegisterModal({ isOpen, handleCloseClick, onRegisterModalSubmit }) {
   const resetData = () => {
     setData({ name: "", email: "", password: "", avatar: "" });
   };
-  useEffect(() => {}, [isOpen]); // watch the opening state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,14 +40,15 @@ function RegisterModal({ isOpen, handleCloseClick, onRegisterModalSubmit }) {
   return (
     <ModalWithForm
       title="Sign up"
-      submitBtnText="Next"
+      submitBtnText="Sign Up"
       isOpen={isOpen}
       handleCloseClick={handleCloseClick}
       onSubmit={handleSubmit}
+      onClick={onLoginClick}
     >
       <div className="modal__label-container ">
         <label className="modal__label" htmlFor="email">
-          Email*
+          Email *
         </label>
         <input
           placeholder="Email"
@@ -61,7 +62,7 @@ function RegisterModal({ isOpen, handleCloseClick, onRegisterModalSubmit }) {
       </div>
       <div className="modal__label-container ">
         <label className="modal__label" htmlFor="password">
-          Password*
+          Password *
         </label>
         <input
           placeholder="Password"
@@ -75,7 +76,7 @@ function RegisterModal({ isOpen, handleCloseClick, onRegisterModalSubmit }) {
       </div>
       <div className="modal__label-container ">
         <label className="modal__label" htmlFor="name">
-          Name
+          Name *
         </label>
         <input
           placeholder="Name"
@@ -89,7 +90,7 @@ function RegisterModal({ isOpen, handleCloseClick, onRegisterModalSubmit }) {
       </div>
       <div className="modal__label-container ">
         <label className="modal__label" htmlFor="avatar">
-          Avatar URL
+          Avatar URL *
         </label>
         <input
           placeholder="Avatar URL"
@@ -100,12 +101,6 @@ function RegisterModal({ isOpen, handleCloseClick, onRegisterModalSubmit }) {
           value={data.avatar}
           onChange={handleChange}
         />
-      </div>
-      <div className="register__signin">
-        <p>or</p>
-        <Link to="login" className="register__login-link">
-          Log in
-        </Link>
       </div>
     </ModalWithForm>
   );

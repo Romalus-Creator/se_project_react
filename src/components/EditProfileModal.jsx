@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-// import Logo from "../assets/logo.svg";
+import { useState, useEffect, useContext } from "react";
 import "../blocks/LoginModal.css";
 import ModalWithForm from "../components/ModalWithForm";
+import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 
 const EditProfileModal = ({
   isOpen,
@@ -14,11 +13,20 @@ const EditProfileModal = ({
     avatar: "",
   });
 
+  const { currentUser } = useContext(CurrentUserContext);
+
   const resetData = () => {
     setData({ name: "", avatar: "" });
   };
 
-  useEffect(() => {}, [isOpen]); // watch the opening state
+  useEffect(() => {
+    if (isOpen && currentUser) {
+      setData({
+        name: currentUser.name || "",
+        avatar: currentUser.avatar || "",
+      });
+    }
+  }, [isOpen, currentUser]); // watch the opening state
 
   const handleChange = (e) => {
     const { name, value } = e.target;

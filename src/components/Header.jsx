@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AppContext from "../contexts/AppContext";
 import Logo from "../assets/Logo.svg";
@@ -17,7 +17,7 @@ function Header({
     day: "numeric",
   });
 
-  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
+  const { isLoggedIn } = useContext(AppContext);
   const { currentUser } = useContext(CurrentUserContext);
 
   const currentUserInitial = currentUser.name ? currentUser.name[0] : "";
@@ -48,8 +48,7 @@ function Header({
           <Link to="/profile" className="header__link">
             <div className="header__profile">
               {currentUser.name}
-              {currentUser.avatar !== "" &&
-              currentUser.avatar !== "undefined" ? (
+              {currentUser.avatar !== "" && currentUser.avatar !== undefined ? (
                 <img
                   src={currentUser.avatar}
                   alt="image of the current user"

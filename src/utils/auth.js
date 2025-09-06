@@ -1,4 +1,5 @@
 // Specify the BASE_URL for the API.
+import { checkResponse } from "./api";
 export const BASE_URL = "http://localhost:3001";
 
 // The register function accepts the necessary data as arguments,
@@ -11,9 +12,7 @@ export const register = (name, avatar, email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password, name, avatar }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then((res) => checkResponse(res));
 };
 
 export const login = (email, password) => {
@@ -24,7 +23,5 @@ export const login = (email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then((res) => checkResponse(res));
 };

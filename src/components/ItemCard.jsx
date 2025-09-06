@@ -9,10 +9,9 @@ function ItemCard({ item, handleCardClick, onCardLike }) {
   useEffect(() => {}, [currentUser]);
   const _id = item._id;
   const isLiked = item.likes.some((_id) => _id === currentUser._id);
-  const itemLikeButtonClassName =
-    isLiked && currentUser._id === item.owner
-      ? "card__like-btn_clicked"
-      : "card__like-btn";
+  const itemLikeButtonClassName = isLiked
+    ? "card__like-btn_clicked"
+    : "card__like-btn";
 
   const onCardClick = () => {
     handleCardClick(item);
