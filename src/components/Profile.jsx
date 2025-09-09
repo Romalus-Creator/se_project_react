@@ -1,5 +1,6 @@
 import Sidebar from "./Sidebar.jsx";
 import ClothesSection from "./ClothesSection.jsx";
+import "../blocks/Profile.css";
 
 function Profile({
   handleCardClick,

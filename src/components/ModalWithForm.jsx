@@ -1,3 +1,5 @@
+import "../blocks/ModalWithForm.css";
+
 function ModalWithForm({
   children,
   title,

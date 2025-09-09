@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import AppContext from "../contexts/AppContext";
 import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 import ItemCard from "./ItemCard.jsx";
+import "../blocks/ClothesSection.css";
 
 function ClothesSection({
   handleCardClick,

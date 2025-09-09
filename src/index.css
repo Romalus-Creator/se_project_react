@@ -1,15 +1,2 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts.css);
-@import url(./blocks/App.css);
-@import url(./blocks/Header.css);
-@import url(./blocks/ItemCard.css);
-@import url(./blocks/WeatherCard.css);
-@import url(./blocks/Main.css);
-@import url(./blocks/ModalWithForm.css);
-@import url(./blocks/ItemModal.css);
-@import url(./blocks/Footer.css);
-@import url(./blocks/ToggleSwitch.css);
-@import url(./blocks/AddItemModal.css);
-@import url(./blocks/Profile.css);
-@import url(./blocks/Sidebar.css);
-@import url(./blocks/ClothesSection.css);

@@ -5,6 +5,7 @@ import Logo from "../assets/Logo.svg";
 import ProfileImage from "../assets/RomanSmallCircleImage.gif";
 import ToggleSwitch from "./ToggleSwitch";
 import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
+import "../blocks/Header.css";
 
 function Header({
   handleAddClick,

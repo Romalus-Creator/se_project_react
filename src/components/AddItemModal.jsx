@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import ModalWithForm from "../components/ModalWithForm";
 import CurrentUserContext from "../contexts/CurrentUserContext";
+import "../blocks/AddItemModal.css";
 
 function AddItemModal({ handleCloseClick, isOpen, onAddItemModalSubmit }) {
   const [name, setName] = useState("");

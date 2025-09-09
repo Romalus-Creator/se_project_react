@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 // import Logo from "../assets/logo.svg";
 import "../blocks/LoginModal.css";
 import ModalWithForm from "../components/ModalWithForm";
+import "../blocks/LoginModal.css";
 
 const LoginModal = ({
   isOpen,

@@ -26,6 +26,7 @@ import { getItems, postItem, deleteItem } from "../utils/api.js";
 import * as api from "../utils/api";
 import * as auth from "../utils/auth";
 import EditProfileModal from "./EditProfileModal.jsx";
+import "../blocks/App.css";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -80,7 +81,6 @@ function App() {
         closeModal();
       })
       .catch(console.error);
-    console.log(clothingItems);
   };
 
   const handleDeleteItemModalSubmit = (evt) => {
@@ -122,7 +122,6 @@ function App() {
     auth
       .register(name, avatar, email, password)
       .then(() => {
-        console.log(`registerModal.then pass: ${password}`);
         handleLoginModalSubmit({ email, password });
         closeModal();
       })
@@ -166,7 +165,7 @@ function App() {
   //Checks if the user is logged in.
   useEffect(() => {
     if (!token) {
-      return console.log("token is false!");
+      return;
     }
     api
       .getUserInfo(token)

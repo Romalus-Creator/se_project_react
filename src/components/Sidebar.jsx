@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext.jsx";
 import { Link } from "react-router-dom";
+import "../blocks/Sidebar.css";
 
 function Sidebar({ handleEditProfileClick, handleLogout }) {
   const { currentUser } = useContext(CurrentUserContext);
