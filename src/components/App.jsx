@@ -154,8 +154,9 @@ function App() {
     api
       .updateUserInfo({ name, avatar, token })
       .then(({ name, avatar }) => {
-        setCurrentUser({ name, avatar }, currentUser.email, currentUser._id);
+        setCurrentUser({ ...currentUser, name, avatar });
         setUserData({ name });
+        closeModal();
       })
       .catch((err) => {
         console.error("Login error:", err);
@@ -222,6 +223,7 @@ function App() {
             .catch((err) => console.log(err))
       : false;
   };
+
   return (
     <CurrentUserContext.Provider value={{ currentUser, token }}>
       <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>

@@ -71,3 +71,7 @@
   background-image: url(../assets/like_heart_red_hover_icon.svg);
   opacity: 50%;
 }
+
+.card__like-btn_hidden {
+  visibility: hidden;
+}

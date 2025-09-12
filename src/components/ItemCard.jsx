@@ -26,7 +26,9 @@ function ItemCard({ item, handleCardClick, onCardLike }) {
       <div className="card__name-section">
         <h2 className="card__name">{item.name}</h2>
         <button
-          className={itemLikeButtonClassName}
+          className={
+            isLoggedIn ? itemLikeButtonClassName : "card__like-btn_hidden"
+          }
           onClick={handleLike}
         ></button>
       </div>

@@ -55,7 +55,7 @@
 }
 
 .modal__close-btn {
-  background-image: url(../images/close-btn_x.svg);
+  background-image: url(../assets/close-btn_x.svg);
   background-color: transparent;
   background-size: contain;
   background-position: center;

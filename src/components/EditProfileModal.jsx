@@ -41,6 +41,7 @@ const EditProfileModal = ({
     onEditProfileModalSubmit(data);
     resetData();
   };
+
   return (
     <ModalWithForm
       title="Change profile data"
