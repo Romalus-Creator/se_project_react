@@ -1,6 +1,9 @@
 // Specify the BASE_URL for the API.
 import { checkResponse } from "./api";
-export const BASE_URL = "http://localhost:3001";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.what2wear.jumpingcrab.com"
+    : "http://localhost:3001";
 
 // The register function accepts the necessary data as arguments,
 // and sends a POST request to the given endpoint.
