@@ -10,6 +10,7 @@
     "deploy": "npm run build && scp -r ./dist/* romanehrhardt101@what2wear.jumpingcrab.com:/home/romanehrhardt101/frontend",
     "preview": "vite preview"
   },
+  "homepage": "https://what2wear.jumpingcrab.com",
   "dependencies": {
     "express-winston": "^4.2.0",
     "react": "^18.3.1",
